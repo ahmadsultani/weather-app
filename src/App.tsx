@@ -1,38 +1,72 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { useState, useEffect } from "react";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+import Weather from "./components/Weather";
+import Form from "./components/Form";
+import { API_KEY } from "./apikey";
+
+import { Box, Text, VStack } from "@chakra-ui/react";
+
+function App() {
+  const [city, setCity] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState({});
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (city.length !== 0) {
+      setIsLoading(true)
+      console.log(isLoading)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+      .then(res => res.json())
+      .then(data => {
+        setData(data);
+        setError(null);
+      })
+      .catch(err => {
+        setError(err);
+        console.log(err)
+      })
+      .finally(() => {
+        setCity('');
+        setIsLoading(false);
+        console.log(data);
+      })
+    }
+  }, [city, isLoading, data]);
+
+  return (
+    <VStack w={'full'} spacing={5}>
+      <Text 
+        bg={"#e58429"}
+        color={"whiteAlpha.900"}
+        fontSize={"2xl"}
+        p={2}
+        fontWeight={"bold"}
+        letterSpacing={1.5}
+        w={{ base: "90%", md: "60%", xl: "35%" }}
+        alignItems={"center"}
+        justifyContent={"center"}
+        textAlign={"center"}
+        borderRadius={8}
+      >
+        Weather Forecast
+      </Text>
+      <Box
+        background={"#3B4B58"}
+        p={6}
+        color={"#1F2937"}
+        borderRadius={16}
+        h={350}
+        w={{ base: "90%", md: "60%", xl: "35%" }}
+        justifyContent={"center"}
+        alignItems={"center"}
+        boxShadow={"0px 0px 10px 0px rgba(0,0,0,0.75)"}
+      >
+        <Form setCity={setCity} setIsLoading={setIsLoading}/>
+        <Weather data={data} error={error} isLoading={isLoading}/>
+      </Box>
+    </VStack>
+  );
+}
+
+export default App;

@@ -37,7 +37,7 @@ function App() {
         bg={"#e58429"}
         color={"whiteAlpha.900"}
         fontSize={"2xl"}
-        p={1.5}
+        p={2.5}
         fontWeight={"bold"}
         letterSpacing={1.5}
         w={{ base: "90%", sm: "75%", md: "45%", xl: "35%" }}

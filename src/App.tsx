@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     if (city.length !== 0) {
       setIsLoading(true)
-      console.log(isLoading)
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
       .then(res => res.json())
       .then(data => {
@@ -24,12 +23,10 @@ function App() {
       })
       .catch(err => {
         setError(err);
-        console.log(err)
       })
       .finally(() => {
         setCity('');
         setIsLoading(false);
-        console.log(data);
       })
     }
   }, [city, isLoading, data]);
@@ -43,7 +40,7 @@ function App() {
         p={2}
         fontWeight={"bold"}
         letterSpacing={1.5}
-        w={{ base: "90%", md: "60%", xl: "35%" }}
+        w={{ base: "90%", sm: "75%", md: "45%", xl: "35%" }}
         alignItems={"center"}
         justifyContent={"center"}
         textAlign={"center"}
@@ -57,7 +54,7 @@ function App() {
         color={"#1F2937"}
         borderRadius={16}
         h={350}
-        w={{ base: "90%", md: "60%", xl: "35%" }}
+        w={{ base: "90%", sm: "75%", md: "45%", xl: "35%" }}
         justifyContent={"center"}
         alignItems={"center"}
         boxShadow={"0px 0px 10px 0px rgba(0,0,0,0.75)"}

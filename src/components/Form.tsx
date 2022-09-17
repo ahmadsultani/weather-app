@@ -15,13 +15,11 @@ export default function Form({ setCity, setIsLoading } : any) {
     if (cityForm.length !== 0) {
       cityForm.trim()
       setCity(cityForm);
-      console.log(cityForm);
     }
   }
 
   function handleCityChange(e : any) {
     setCityForm(e.target.value);
-    console.log(cityForm);
   }
 
   return (

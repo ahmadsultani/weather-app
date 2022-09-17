@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      <Center minH={'100vh'} bg={'#1F2937'}>
+      <Center minH={'100vh'} bg="blackAlpha.400">
         <App />
       </Center>
     </ChakraProvider>

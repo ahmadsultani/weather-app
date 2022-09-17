@@ -37,14 +37,14 @@ function App() {
         bg={"#e58429"}
         color={"whiteAlpha.900"}
         fontSize={"2xl"}
-        p={2}
+        p={1.5}
         fontWeight={"bold"}
         letterSpacing={1.5}
         w={{ base: "90%", sm: "75%", md: "45%", xl: "35%" }}
         alignItems={"center"}
         justifyContent={"center"}
         textAlign={"center"}
-        borderRadius={8}
+        borderRadius={16}
       >
         Weather Forecast
       </Text>

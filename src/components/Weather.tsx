@@ -33,7 +33,7 @@ function Weather({ data, error, isLoading }: any) {
               borderRadius={8}
             />
             </VStack>
-            <Skeleton w={'70%'} h={'60%'} borderRadius={8} />
+            <Skeleton w={{base: "60%", lg: "70%"}} h={'60%'} borderRadius={8} />
           </HStack>
       ))}
       {
@@ -62,7 +62,7 @@ function Weather({ data, error, isLoading }: any) {
                 {title}
               </Text>
             </VStack>
-            <Text p={2} fontSize="sm">
+            <Text p={3} fontSize="sm">
               {value}
             </Text>
           </HStack>
@@ -93,7 +93,7 @@ function Weather({ data, error, isLoading }: any) {
                 {title}
               </Text>
             </VStack>
-            <Text p={2} fontSize="sm">
+            <Text p={3} fontSize="sm">
               {value}
             </Text>
           </HStack>
